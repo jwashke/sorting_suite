@@ -14,7 +14,7 @@ class BubbleSortTest < Minitest::Test
     sorter = BubbleSort.new
     assert_equal [2, 1, 3, 4], sorter.make_a_pass_through_the_array([4, 2, 1, 3])
   end
-  
+
   def test_it_can_sort_an_array
     sorter = BubbleSort.new
     assert_equal [1, 2, 3, 4], sorter.sort([4, 2, 1, 3])
