@@ -1,22 +1,21 @@
-require 'pry'
-require 'pry-nav'
+module SortingSuite
+  class InsertionSort
 
-class InsertionSort
+    def sort(array)
+      array.length.times do |index|
+        jndex = index
+        array = sort_inner_loop(array, index)
+      end
+      array
+    end
 
-  def sort(array)
-    array.length.times do |index|
+    def sort_inner_loop(array, index)
       jndex = index
-      array = sort_inner_loop(array, index)
+      while jndex > 0 and array[jndex - 1] > array[jndex]
+        array[jndex - 1], array[jndex] = array[jndex], array[jndex - 1]
+        jndex -= 1
+      end
+      array
     end
-    array
-  end
-
-  def sort_inner_loop(array, index)
-    jndex = index
-    while jndex > 0 and array[jndex - 1] > array[jndex]
-      array[jndex - 1], array[jndex] = array[jndex], array[jndex - 1]
-      jndex -= 1
-    end
-    array
   end
 end
