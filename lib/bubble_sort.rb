@@ -13,7 +13,7 @@ module SortingSuite
       array
     end
 
-    #private
+    private
 
     def make_a_pass_through_the_array(array)
       (array.length - 1).times do |index|

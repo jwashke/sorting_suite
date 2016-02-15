@@ -17,6 +17,8 @@ module SortingSuite
       end
     end
 
+    private
+
     def merge(left_array, right_array)
       sorted_array = []
       until left_array.empty? or right_array.empty?

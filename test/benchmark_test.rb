@@ -1,30 +1,33 @@
 gem 'minitest'
 require 'minitest/autorun'
 require_relative '../lib/benchmark'
+require_relative '../lib/bubble_sort'
+require_relative '../lib/insertion_sort'
+require_relative '../lib/merge_sort'
 
-class BenchmarkTest Minitest::Test
+class SortingBenchmarkTest < Minitest::Test
 
   def setup
-    benchmark = SortingSuite::Benchmark.new
+    @benchmark = SortingSuite::SortingBenchmark.new
   end
 
-  def test_it_can_return_the_time_taken_sort_an_array
-    string = "BubbleSort took /d*/ seconds"
-    assert_equal string, benchmark.time(SortingSuite::BubbleSort, [3, 3, 4, 5, 1])
+  def test_it_can_return_the_time_taken_to_bubble_sort_an_array
+    assert_equal String, @benchmark.time(SortingSuite::BubbleSort, [1..10000].shuffle).class
   end
 
   def test_it_can_return_the_time_taken_to_sort_the_same_array
-    string = "InsertionSort took /d*/ seconds"
-    benchmark.time(SortingSuite::BubbleSort, [3, 3, 4, 5, 1])
-    assert_equal string, benchmark.time(SortingSuite::InsertionSort)
+    assert_equal String, @benchmark.time(SortingSuite::BubbleSort, ([1..10000].shuffle)).class
+    assert_equal String, @benchmark.time(SortingSuite::MergeSort).class
   end
 
   def test_it_can_return_the_fastest_sorting_method
     string = "MergeSort is the fastest"
-    assert_equal string, benchmark.fastest([2, 8, 1, 0, 5])
+    assert_equal string, @benchmark.fastest((1..5000).to_a.shuffle)
+    #binding.pry
   end
 
   def test_it_can_return_the_slowest_sorting_method
     string = "BubbleSort is the slowest"
-    assert_equal string, benchmark.slowest([1, 2, 3, 4, 5])
+    assert_equal string, @benchmark.slowest((1..5000).to_a.shuffle)
   end
+end

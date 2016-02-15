@@ -8,6 +8,8 @@ module SortingSuite
       array
     end
 
+    private
+
     def sort_inner_loop(array, index)
       min = index
       (index + 1).upto(array.length - 1) do |jndex|
