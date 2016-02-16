@@ -1,28 +1,32 @@
 module SortingSuite
   class BubbleSort
+    attr_reader :sorted_array
+
     def initialize
       @swapping = true
     end
 
-    def sort(array)
+    def sort(unsorted_array)
       @swapping = true
+      @sorted_array = unsorted_array
       while @swapping
         @swapping = false
-        array = make_a_pass_through_the_array(array)
+        make_a_pass_through_the_array
       end
-      array
+      sorted_array
     end
 
     private
 
-    def make_a_pass_through_the_array(array)
-      (array.length - 1).times do |index|
-        if array[index] > array[index + 1]
-          array[index], array[index + 1] = array[index + 1], array[index]
-          @swapping = true
-        end
+    def make_a_pass_through_the_array
+      (sorted_array.length - 1).times do |index|
+        swap(index) if sorted_array[index] > sorted_array[index + 1]
       end
-      array
+    end
+
+    def swap(index)
+      @sorted_array[index], @sorted_array[index + 1] = @sorted_array[index + 1], @sorted_array[index]
+      @swapping = true
     end
   end
 end
